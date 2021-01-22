@@ -1,0 +1,40 @@
+{
+	"manifest_version": 2,
+	"default_locale": "en",
+	"name": "D&D//DNK",
+	"short_name": "D&D//DNK",
+	"description": "A suite of tools for 5th Edition D&D players and DMs. Powered by The Null Network.",
+	"icons": [
+		{
+			"src": "android-chrome-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},{
+			"src": "android-chrome-256x256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		},{
+			"src": "android-chrome-384x384.png",
+			"type": "image/png",
+			"sizes": "384x384"
+		},
+		{
+			"src": "android-chrome-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "maskable_icon.png",
+			"type": "image/png",
+			"sizes": "1024x1024",
+			"purpose": "any maskable"
+		}
+	],
+	"start_url": "index.html",
+	"background_color": "#0d2c46",
+	"display": "standalone",
+	"theme_color": "#0d2c46",
+	"permissions": [
+		"clipboardWrite"
+	]
+}
