@@ -37,7 +37,7 @@
     "ver": "1.0.6",
     "date": "2018-08-07",
     "title": "Fantasy Grounds is Objectively Superior",
-    "txt": "- Added support for homebrew spell schools -\n- see here https://github.com/TheGiddyLimit/homebrew/blob/master/spell/Sample%20-%20Giddy%3B%20Assorted%20Marginalia.json for an example\n- Added support for homebrew spell units -\n- as above\n- Added Plane Shift: Dominaria\n- Fixed point-buy calculator breaking on races with the same name\n- Fixed issue where Search Everywhere wouldn't index homebrew on certain pages\n- Tagged dice in PotA\n- Fixed creatures with strange skill/save scores breaking the Proficiency Dice converter\n- Fixed Night Mode reverting on page change in offline copies of the site\n- (Fixed typos)"
+    "txt": "- Added support for homebrew spell schools -\n- see here https://github.com/thenullnetwork/dnd-homebrew/blob/master/spell/Sample%20-%20Giddy%3B%20Assorted%20Marginalia.json for an example\n- Added support for homebrew spell units -\n- as above\n- Added Plane Shift: Dominaria\n- Fixed point-buy calculator breaking on races with the same name\n- Fixed issue where Search Everywhere wouldn't index homebrew on certain pages\n- Tagged dice in PotA\n- Fixed creatures with strange skill/save scores breaking the Proficiency Dice converter\n- Fixed Night Mode reverting on page change in offline copies of the site\n- (Fixed typos)"
   },
   {
     "ver": "1.0.7",
