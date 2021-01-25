@@ -8,7 +8,7 @@
 
 importScripts("./js/sw-files.js");
 
-const cacheName = /* D&D//DNK_VERSION__OPEN */"1.119.1"/* D&D//DNK_VERSION__CLOSE */;
+const cacheName = /* D&D//DNK_VERSION__OPEN */"3.0.1"/* D&D//DNK_VERSION__CLOSE */;
 const cacheableFilenames = new Set(filesToCache);
 
 let isCacheRunning;
