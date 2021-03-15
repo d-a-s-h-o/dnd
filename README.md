@@ -1,7 +1,7 @@
 ## D&D//DNK
 #### Powered by The Null Network
 
-Visit the [main site](https://dnd.d-n-k.tk) or go to the unofficial GitHub [mirror](https://dev.dnd.d-n-k.tk).
+Visit the [main site](https://dnd.d-n-k.tk) or go to the unofficial GitHub [mirror](https://thenullnetwork.github.io/dnd/).
 
 [Join the D&D//DNK Discord here!](https://discord.gg/yM7YGrT)
 
