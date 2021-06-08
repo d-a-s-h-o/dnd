@@ -1,13 +1,13 @@
-## D&D//DNK
-#### Powered by The Null Network
+## D&Dz
+#### Powered by Dasho
 
-Visit the [main site](https://dnd.onionz.dev) or go to the unofficial GitHub [mirror](https://thenullnetwork.github.io/dnd/).
+Visit the [main site](https://dndz.dev) or go to the unofficial GitHub [mirror](https://thenullnetwork.github.io/dnd/).
 
 [Join the D&D//DNK Discord here!](https://discord.gg/yM7YGrT)
 
 ## Help and Support
 
-Please see [our wiki](https://wiki.dnd.onionz.dev/) [UNDER CONSTRUCTION] for FAQs, installation guides, supported integrations, and more.
+Please see [our wiki](https://wiki.dndz.dev/) [UNDER CONSTRUCTION] for FAQs, installation guides, supported integrations, and more.
 
 ---
 
