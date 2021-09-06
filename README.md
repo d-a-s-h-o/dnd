@@ -3,7 +3,7 @@
 
 Visit the [main site](https://dndz.dev) or go to the unofficial GitHub [mirror](https://d-a-s-h-o.github.io/dnd/).
 
-[Join the D&D//DNK Discord here!](https://discord.gg/yM7YGrT)
+[Join the D&Dz Discord here!](https://discord.gg/yM7YGrT)
 
 ## Help and Support
 
