@@ -1,6 +1,6 @@
 ## D&Dz
 
-Visit the [main site](https://dndz.dev/) or go to the unofficial GitHub [mirror](index.html).
+Visit the [main site](https://dndz.dev/) or go to the official [GitHub mirror](https://d-a-s-h-o.github.io/dnd/).
 
 [Join the D&Dz Discord here!](https://discord.gg/yM7YGrT)
 
