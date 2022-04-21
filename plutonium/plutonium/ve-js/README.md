@@ -1,4 +1,4 @@
-This directory should contain copies of 5etools':
+This directory should contain copies of D&Dz's:
  - `utils.js`
  - `utils-ui.js`
  - `render.js`
