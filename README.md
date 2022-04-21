@@ -2,7 +2,7 @@
 
 Visit the [main site](https://dndz.dev/) or go to the unofficial GitHub [mirror](index.html).
 
-[Join the D&Dz Discord here!](https://discord.com/invite/yM7YGrT)
+[Join the D&Dz Discord here!](https://discord.gg/yM7YGrT)
 
 ## Help and Support
 
