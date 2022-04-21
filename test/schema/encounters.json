@@ -1,11 +1,12 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.2.1",
+	"$id": "encounters.json",
+	"version": "1.2.3",
 	"title": "EncounterArray",
 	"type": "object",
-
 	"definitions": {
 		"encounterTableRow": {
+			"type": "object",
 			"properties": {
 				"min": {
 					"type": "integer"
@@ -24,8 +25,8 @@
 			],
 			"additionalProperties": false
 		},
-
 		"encounterTable": {
+			"type": "object",
 			"properties": {
 				"minlvl": {
 					"type": "integer"
@@ -50,8 +51,8 @@
 			],
 			"additionalProperties": false
 		},
-
 		"encounter": {
+			"type": "object",
 			"properties": {
 				"name": {
 					"type": "string"
@@ -66,7 +67,7 @@
 					}
 				},
 				"page": {
-					"type": "integer"
+					"$ref": "util.json#/definitions/page"
 				}
 			},
 			"required": [
@@ -77,16 +78,17 @@
 			"additionalProperties": false
 		}
 	},
-
 	"properties": {
 		"encounter": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"$ref": "#/definitions/encounter"
 			}
 		}
 	},
-
-	"required": ["encounter"],
+	"required": [
+		"encounter"
+	],
 	"additionalProperties": false
 }

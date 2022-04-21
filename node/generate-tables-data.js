@@ -3,6 +3,8 @@ require("../js/utils");
 const ut = require("./util");
 const UtilGenTables = require("./util-generate-tables-data.js");
 
+Object.assign(global, require("../js/hist.js"));
+
 class GenTables {
 	_doLoadAdventureData () {
 		return ut.readJson(`./data/adventures.json`).adventure
@@ -11,7 +13,7 @@ class GenTables {
 					return {
 						adventure: idx,
 						adventureData: JSON.parse(fs.readFileSync(`./data/adventure/adventure-${idx.id.toLowerCase()}.json`, "utf-8")),
-					}
+					};
 				}
 			})
 			.filter(it => it);
@@ -35,6 +37,7 @@ class GenTables {
 
 		this._addBookAndAdventureData(output);
 		await this._pAddClassData(output);
+		await this._pAddVariantRuleData(output);
 
 		const toSave = JSON.stringify({table: output.tables, tableGroup: output.tableGroups});
 		fs.writeFileSync(`./data/generated/gendata-tables.json`, toSave, "utf-8");
@@ -88,11 +91,28 @@ class GenTables {
 			const {table: foundTables} = UtilGenTables.getClassTables(cls);
 			output.tables.push(...foundTables);
 		});
+
+		classData.subclass.forEach(sc => {
+			const {table: foundTables} = UtilGenTables.getSubclassTables(sc);
+			output.tables.push(...foundTables);
+		});
+	}
+
+	async _pAddVariantRuleData (output) {
+		ut.patchLoadJson();
+		const variantRuleData = await DataUtil.loadJSON(`./data/variantrules.json`);
+		ut.unpatchLoadJson();
+
+		variantRuleData.variantrule.forEach(it => {
+			const {table: foundTables} = UtilGenTables.getGenericTables(it, "variantrule", "entries");
+			output.tables.push(...foundTables);
+		});
 	}
 }
 GenTables.BOOK_BLACKLIST = {};
 GenTables.ADVENTURE_WHITELIST = {
 	[SRC_SKT]: true,
+	[SRC_TTP]: true,
 };
 
 const generator = new GenTables();

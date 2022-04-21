@@ -1,6 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.0.0",
+	"$id": "rewards.json",
+	"version": "1.0.4",
 	"type": "object",
 	"properties": {
 		"reward": {
@@ -16,10 +17,19 @@
 						"type": "string"
 					},
 					"page": {
-						"type": "integer"
+						"$ref": "util.json#/definitions/page"
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"enum": [
+							"Blessing",
+							"Boon",
+							"Charm",
+							"Draconic Gift",
+							"Inhabitation",
+							"Fragment of Suffering",
+							"Other"
+						]
 					},
 					"ability": {
 						"type": "object",
@@ -44,6 +54,9 @@
 							"entry"
 						],
 						"additionalProperties": false
+					},
+					"rarity": {
+						"$ref": "util.json#/definitions/rarity"
 					},
 					"entries": {
 						"type": "array",

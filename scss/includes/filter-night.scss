@@ -1,4 +1,4 @@
-@import 'vars';
+@import "vars";
 
 .night-mode .fltr {
 	$flt-ignore: $rgb-bg--night;
@@ -92,6 +92,15 @@
 
 			&[state=no] {
 				border-color: darken($rgb-active-red, $pct-darken-border);
+			}
+
+			&--muted {
+				color: darken($rgb-font--muted, 7%);
+
+				&[state=yes],
+				&[state=no] {
+					color: white;
+				}
 			}
 		}
 

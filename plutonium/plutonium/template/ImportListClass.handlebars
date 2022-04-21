@@ -1,0 +1,50 @@
+<div class="flex-col h-100 ve-window min-h-0">
+	<div class="flex-v-stretch input-group input-group--top no-shrink">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find classes or subclasses...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1 no-shrink" data-name="wrp-btns-sort">
+		{{#if isRadio}}
+			<button class="btn btn-5et col-1 flex-vh-center" disabled></button>
+		{{else}}
+			<label class="btn btn-5et col-1 flex-vh-center"><input type="checkbox" name="cb-select-all"></label>
+		{{/if}}
+		<button class="btn-5et col-9 sort name" data-sort="sortName">Name</button>
+		<button class="btn-5et col-2" disabled>Source</button>
+	</div>
+
+	<div class="veapp__list mb-1 h-100">
+		{{#each rows}}
+			<label class="flex w-100 imp__row">
+				{{#if ../isRadio}}
+					<div class="col-1 flex-vh-center"><div class="fltr-cls__tgl"></div></div>
+				{{else}}
+					<span class="col-1 flex-vh-center">{{#unless disabled}}<input type="checkbox" class="no-events">{{/unless}}</span>
+				{{/if}}
+				<span class="col-9 bold">{{name}}</span>
+				<span class="col-2 text-center {{sourceClassName}}" title="{{sourceLong}}">{{sourceShort}}</span>
+			</label>
+
+			{{#each subRows}}
+				<label class="flex w-100 imp__row">
+					{{#if ../../isRadio}}
+						<div class="col-1 flex-vh-center"><div class="fltr-cls__tgl"></div></div>
+					{{else}}
+						<span class="col-1 flex-vh-center"><input type="checkbox" class="no-events"></span>
+					{{/if}}
+					<span class="col-9" title="Class: {{../name}}"><span class="mx-3">&mdash;</span>{{name}}</span>
+					<span class="col-2 text-center {{sourceClassName}}" title="{{sourceLong}}">{{sourceShort}}</span>
+				</label>
+			{{/each}}
+		{{/each}}
+	</div>
+
+	<div class="no-shrink">
+		<button class="btn-5et" name="btn-run">Import</button>
+	</div>
+</div>

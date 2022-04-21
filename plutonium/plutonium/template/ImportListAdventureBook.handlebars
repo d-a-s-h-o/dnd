@@ -1,0 +1,46 @@
+<div class="flex-col h-100 ve-window min-h-0">
+	<h3 class="mb-1 imp__advbk__header bold">Importing: {{name}}</h3>
+
+	<div class="my-1">The text will be imported to your <span class="clickable bold" onclick="ui.sidebar.activateTab('journal')">Journal Entries</span> tab.</div>
+
+	{{#if tagSections.length}}
+		<div class="my-1 split-v-center">
+			<div class="mr-5">The following attached data is available for import:</div>
+			<label class="flex-h-right">
+				<input type="checkbox" data-type="god" checked title="Select All">
+			</label>
+		</div>
+	{{else}}
+		<div class="my-1"><i>There is no attached data available for import.</i></div>
+	{{/if}}
+
+	{{#each tagSections}}
+		<hr class="hr-1">
+
+		<div class="flex-v-center 100 mt-1">
+			<label class="w-100 mr-2 imp__advbk__sect-header split-v-center">
+				<span class="mr-2 bold">{{displayName}}</span>
+				<input type="checkbox" data-tag="{{tag}}" data-type="all" checked title="Select All">
+			</label>
+			<div class="no-shrink">
+				<button class="btn btn-xs" title="Set folder path for {{toLowerCase displayName}} import" data-type="configure" data-tag="{{tag}}">
+					<span class="fas fa-sitemap"></span>
+				</button>
+			</div>
+		</div>
+
+		<div class="w-100 flex-wrap">
+			{{#each sources}}
+				<label class="flex-v-center my-1 mr-1 imp__advbk__wrp-cb-source">
+					<span class="mr-1 {{sourceClassName}}" title="{{sourceLong}}">{{sourceShort}}</span>
+					<input type="checkbox" class="mr-1" data-tag="{{../tag}}" data-source="{{source}}" checked>
+					<span class="ve-muted">({{count}})</span>
+				</label>
+			{{/each}}
+		</div>
+	{{/each}}
+
+	<div class="no-shrink mt-auto">
+		<button class="btn-5et" name="btn-run">Import</button>
+	</div>
+</div>

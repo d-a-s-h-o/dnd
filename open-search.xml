@@ -1,0 +1,11 @@
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+							  xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+	<ShortName>D&amp;Dz</ShortName>
+	<Description>D&amp;Dz: A suite of browser-based tools for 5th Edition Dungeons &amp; Dragons players and Dungeon Masters. Powered by Dasho.</Description>
+	<InputEncoding>UTF-8</InputEncoding>
+	<Image width="16" height="16" type="image/x-icon">https://dndz.dev/favicon-16x16.png</Image>
+	<Url type="text/html" template="https://dndz.dev/search.html?{searchTerms}"/>
+	<Url type="application/x-suggestions+json" method="GET" template="http://suggestqueries.google.com/complete/search?output=firefox&amp;q={searchTerms}"/>
+	<moz:SearchForm>https://dndz.dev/search.html</moz:SearchForm>
+	<SearchForm>https://dndz.dev/search.html</SearchForm>
+</OpenSearchDescription>

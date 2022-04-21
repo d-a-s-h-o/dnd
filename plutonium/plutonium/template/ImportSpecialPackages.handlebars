@@ -1,0 +1,38 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top no-shrink">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find package...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1 no-shrink" data-name="wrp-btns-sort">
+		<button class="btn-5et col-0-5 px-1" disabled></button>
+		<button class="btn-5et col-4-5 px-1 sort" data-sort="name">Name</button>
+		<button class="btn-5et col-4 px-1 sort" data-sort="author">Authors</button>
+		<button class="btn-5et col-1 px-1" disabled title="Version">Ver.</button>
+		<button class="btn-5et col-1 px-1 sort" data-sort="module" title="Has Module">Mod.</button>
+		<button class="btn-5et col-1 px-1 sort" data-sort="world" title="Has World">Wld.</button>
+	</div>
+
+	<div class="flex-col h-100 min-h-0 veapp__list">
+		{{#each packages}}
+			<label class="w-100 imp__row flex-v-center">
+				<span class="col-0-5 px-1 flex-vh-center"><input type="radio" name="radio" class="no-events"></span>
+
+				<span class="px-1 col-4-5">{{name}}</span>
+				<span class="px-1 col-4 text-clip-ellipsis" title="{{join author ", "}}">{{join author ", "}}</span>
+				<span class="px-1 col-1 text-center">{{version}}</span>
+				<span class="px-1 col-1 text-center">{{#if manifesturlModule}}<span class="veapp__msg-warning fas fa-check"></span>{{else}}{{/if}}</span>
+				<span class="px-1 col-1 text-center">{{#if manifesturlWorld}}<span class="veapp__msg-warning fas fa-check"></span>{{else}}{{/if}}</span>
+			</label>
+		{{/each}}
+	</div>
+
+	<div class="no-shrink flex-v-center">
+		<button class="btn-5et w-50 mr-2" name="btn-run--module">Import as Module</button>
+		<button class="btn-5et w-50" name="btn-run--world">Import as World</button>
+	</div>
+</div>

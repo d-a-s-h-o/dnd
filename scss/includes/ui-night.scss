@@ -2,13 +2,30 @@
 Shared UI components
  */
 
-@import 'vars';
+@import "vars";
 
 /* region Misc/Shared */
-.ui__ {
+.night-mode .ui__ {
 	&ipt-color {
 		&::-webkit-color-swatch {
 			border: 0;
+		}
+	}
+}
+/* endregion */
+
+/* region List */
+.night-mode .ui-list__ {
+	&wrp-preview {
+		background: $rgb-bg--night;
+	}
+
+	&btn-inline {
+		color: $rgb-font--night;
+
+		&:hover {
+			color: lighten($rgb-font--night, 10%);
+			background: #ffffff30;
 		}
 	}
 }
@@ -42,8 +59,14 @@ Shared UI components
 		border-color: $rgb-border-grey--night;
 	}
 
-	&inner--mode-fullscreen {
-		box-shadow: none;
+	&inner {
+		background: $rgb-bg--night;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.56);
+		border-color: $rgb-border-grey--trans-night;
+
+		&--mode-fullscreen {
+			box-shadow: none;
+		}
 	}
 
 	&row--cb:hover {
@@ -82,6 +105,8 @@ Shared UI components
 	&wrp-tab-body {
 		&--background {
 			background: $rgb-bg--night;
+			border-color: $rgb-border-grey--trans-night;
+			border-bottom-color: darken($rgb-border-grey--trans-night, 15%);
 		}
 	}
 
@@ -108,16 +133,16 @@ Shared UI components
 			@include shadow-active--night();
 		}
 
-		&[data-state='0'] {
+		&[data-state="0"] {
 			background: $rgb-bg--night;
 		}
 
-		&[data-state='1'] {
+		&[data-state="1"] {
 			background: $rgb-border-grey--night;
 			border-color: lighten($rgb-border-grey--night, 10%);
 		}
 
-		&[data-state='2'] {
+		&[data-state="2"] {
 			background: $rgb-border-grey--night;
 			border-color: lighten($rgb-border-grey--night, 10%);
 
@@ -126,7 +151,7 @@ Shared UI components
 			}
 		}
 
-		&[data-state='3'] {
+		&[data-state="3"] {
 			background: repeating-linear-gradient(135deg, $rgb-bg--night, $rgb-bg--night 10px, $rgb-border-grey--night 10px, $rgb-border-grey--night 20px);
 			border-color: lighten($rgb-border-grey--night, 10%);
 		}
@@ -169,7 +194,7 @@ Shared UI components
 		background: $rgb-border-grey--night;
 	}
 
-	&__row {
+	&__btn {
 		&:hover {
 			background: $rgb-bg--alt-night;
 			color: white;
@@ -244,6 +269,42 @@ Shared UI components
 		&:focus.active,
 		&:hover.active {
 			background: lighten($rgb-bg--alt-night, $pct-darken-active);
+		}
+	}
+}
+/* endregion */
+
+/* region Range Slider */
+.night-mode .ui-slidr {
+	&__ {
+		&thumb {
+			background: $rgb-border-grey--trans;
+			border-color: $rgb-font--night;
+
+			&--hover,
+			&:hover {
+				background: lighten($rgb-border-grey--trans, 10%);
+				border-color: $rgb-font--night;
+			}
+		}
+
+		&track-outer {
+			border-color: $rgb-border-grey--night;
+		}
+
+		&track-inner {
+			background: $rgb-border-grey--trans-night;
+		}
+
+		&disp-value {
+			&--visible {
+				border-color: $rgb-border-grey--night;
+				background: $rgb-bg--night;
+			}
+		}
+
+		&pip {
+			background: $rgb-font--night;
 		}
 	}
 }

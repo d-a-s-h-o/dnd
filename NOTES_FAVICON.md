@@ -1,5 +1,5 @@
-## Favicon update - 1.114.2 (probably)
-Website favicons have been subtly redone by Dasho (aka D), based on the original logo.
+## Favicon update - 4.0.0
+Website favicons have been subtly redone.
 
 Here's a quick breakdown of what the new icons look like:
 
@@ -21,14 +21,14 @@ Here's a quick breakdown of what the new icons look like:
 
 _**Not pictured, but updated:** Android splash screen, Windows Start Menu tiles, standalone app mode_
 
-SVG designs were completed within Illustrator, and final sizes generated with Sketch. All source files have been included in a ZIP file [here](./favicon_source_files.zip), with the changes detailed below for the curious.
+SVG designs were completed within InkScape, and final sizes generated with InkScape. All source files have been included in a ZIP file [here](./favicon_source_files.zip), with the changes detailed below for the curious.
 
 ### New HTML code
 This is the code that should now be in every page's `<head>` section.
 
 ```html
 <!-- Favicons -->
-
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
 <link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
 <link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
 <link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
@@ -39,7 +39,7 @@ This is the code that should now be in every page's `<head>` section.
 
 <!-- Chrome Web App Icons -->
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="application-name" content="D&amp;D//DNK">
+<meta name="application-name" content="D&Dz">
 <meta name="theme-color" content="#0d2c46">
 
 <!-- Windows Start Menu tiles -->
@@ -52,7 +52,7 @@ This is the code that should now be in every page's `<head>` section.
 <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
 <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
 <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
-<meta name="apple-mobile-web-app-title" content="D&amp;D//DNK">
+<meta name="apple-mobile-web-app-title" content="D&Dz">
 
 <!-- macOS Safari Pinned Tab and Touch Bar -->
 <link rel="mask-icon" href="safari-pinned-tab.svg" color="#0d2c46">
@@ -62,5 +62,5 @@ This is the code that should now be in every page's `<head>` section.
 - **Favicon:** The stroke color has been changed to match the app icon. This has the added benefit of making it easier to see while in dark mode.
 - **App icon:** The text has been resized within the app icon to give more spacing around edge. (Apple's "official" app icon design grid came in handy here.) Also, a *slight* gradient was applied to give it some almost-imperceptible pop.
 - **Goodbye, pirate hat:** The icon with the pirate hat has been replaced. It was cheeky, but definitely not the impression we want to give off. <!-- TODO: Delete the /icon folder, wherever it is, since it's not used anymore -->
-- **Android splash screen:** When launching it from the home screen on Android, D&D//DNK now gets a fancy splash screen.
-- **Better standalone mode:** After adding D&D//DNK to your device's home screen (or installing it in your browser as an app), it now behaves like its own app, including showing up in your app switcher as "D&D//DNK." It did this before, but now it should behave a little nicer. Depending on your platform, it might even show a back button now.
+- **Android splash screen:** When launching it from the home screen on Android, D&Dz now gets a fancy splash screen.
+- **Better standalone mode:** After adding D&Dz to your device's home screen (or installing it in your browser as an app), it now behaves like its own app, including showing up in your app switcher as "D&Dz." It did this before, but now it should behave a little nicer. Depending on your platform, it might even show a back button now.

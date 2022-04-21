@@ -1,0 +1,22 @@
+<form class="{{cssClass}} flex-col h-100" autocomplete="off">
+    <input name="name" type="text" value="{{entity.name}}" placeholder="Entry Title"/>
+
+    <select name="folder">
+        {{#select entity.folder}}
+        <option value=""></option>
+        {{#each folders}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+        {{/select}}
+    </select>
+
+	{{#if entity.flags.plutonium.iframe_url}}
+		<iframe src="{{entity.flags.plutonium.iframe_url}}" class="w-100 h-100" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	{{else}}
+		{{editor content=entity.content target="content" button=true editable=editable owner=owner}}
+
+		{{#if editable}}
+			<button type="submit" name="submit"><i class="fas fa-feather-alt"></i> Save Entry</button>
+		{{/if}}
+	{{/if}}
+</form>

@@ -24,6 +24,7 @@ const BLACKLIST_KEYS = new Set([
 	"_meta",
 	"data",
 	"itemProperty",
+	"itemEntry",
 	"lifeClass",
 	"lifeBackground",
 	"lifeTrinket",
@@ -34,6 +35,7 @@ const BLACKLIST_KEYS = new Set([
 	"itemTypeAdditionalEntries",
 	"legendaryGroup",
 	"languageScript",
+	"dragonMundaneItems",
 ]);
 
 // Sources which only exist in digital form
@@ -43,10 +45,7 @@ const BLACKLIST_SOURCES = new Set([
 	"SDW",
 ]);
 
-const SUB_KEYS = {
-	class: ["subclasses"],
-	race: ["subraces"],
-};
+const SUB_KEYS = {};
 
 function run (isModificationMode) {
 	console.log(`##### Checking for Missing Page Numbers #####`);
@@ -64,7 +63,8 @@ function run (isModificationMode) {
 					if (data instanceof Array) {
 						const noPage = data
 							.filter(it => !BLACKLIST_SOURCES.has((it.inherits ? it.inherits.source : it.source) || it.source))
-							.filter(it => !(it.inherits ? it.inherits.page : it.page));
+							.filter(it => !(it.inherits ? it.inherits.page : it.page))
+							.filter(it => !it._copy?._preserve?.page);
 
 						const subKeys = SUB_KEYS[k];
 						if (subKeys) {
@@ -80,7 +80,7 @@ function run (isModificationMode) {
 											.filter(subIt => subIt.name)
 											.filter(subIt => !BLACKLIST_SOURCES.has(subIt.source))
 											.filter(subIt => !subIt.page));
-									})
+									});
 							});
 						}
 

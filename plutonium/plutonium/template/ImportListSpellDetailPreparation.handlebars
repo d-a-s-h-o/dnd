@@ -1,0 +1,45 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top no-shrink">
+		<input type="search" class="search w-100 form-control" placeholder="Find {{titleSearch}}...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+	<div class="flex-v-stretch input-group input-group--bottom mb-1 no-shrink" data-name="wrp-btns-sort">
+		<button class="btn-5et col-3 sort" data-sort="name">Name</button>
+		<button class="btn-5et col-1-5 sort" data-sort="source">Source</button>
+		<button class="btn-5et col-1-5 sort" data-sort="level">Level</button>
+
+		<button class="btn-5et col-3" disabled>Currently Prepared</button>
+		<button class="btn-5et col-3" disabled>Preparation Mode</button>
+	</div>
+
+	<div class="veapp__list mb-1 h-100">
+		{{#each rows}}
+			<label class="w-100 flex-v-center imp__row-creature-scale stripe-even">
+				<span class="col-3 pl-1">{{name}}</span>
+				<span class="col-1-5 text-center {{sourceClassName}}" title="{{sourceLong}}">{{sourceShort}}</span>
+				<span class="col-1-5 text-center">{{level}}</span>
+				<div class="col-3 flex-v-center">
+					<select class="w-100 mx-1 input-xs" name="sel-is-prepared">
+						<option value="-1" title="Use Config Default">&mdash;</option>
+						<option value="0">Not Prepared</option>
+						<option value="1">Currently Prepared</option>
+					</select>
+				</div>
+				<div class="col-3 flex-v-center">
+					<select class="w-100 mx-1 input-xs" name="sel-preparation-mode">
+						<option value="-1" title="Use Config Default">&mdash;</option>
+						<option value="always">Always Prepared</option>
+						<option value="atwill">At-Will</option>
+						<option value="innate">Innate Spellcasting</option>
+						<option value="pact">Pact Magic</option>
+						<option value="prepared">Prepared</option>
+					</select>
+				</div>
+			</label>
+		{{/each}}
+	</div>
+
+	<div class="no-shrink">
+		<button class="btn-5et" name="btn-run">Import</button>
+	</div>
+</div>

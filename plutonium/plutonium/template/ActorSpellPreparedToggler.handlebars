@@ -1,0 +1,31 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find spells...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1" data-name="wrp-btns-sort">
+		<label class="btn btn-5et col-2 flex-vh-center"><input type="checkbox" name="cb-select-all"></label>
+		<button class="btn-5et col-8 sort name" data-sort="name">Name</button>
+		<button class="btn-5et col-2 sort name" data-sort="level">Level</button>
+	</div>
+
+	<div class="veapp__list h-100 mb-1">
+		{{#each rows}}
+			<label class="flex w-100 act-sp-prep__row">
+				<span class="col-2 text-center flex-vh-center relative">
+					<input type="checkbox" class="no-events" {{#if isPrepared}}checked{{/if}}>
+					<span class="ml-2 ve-hidden act-sp-prep__disp-modified" title="Item modified. Click &quot;Update&quot; to commit changes.">*</span>
+				</span>
+				<span class="col-8">{{name}}</span>
+				<span class="col-2 text-center">{{Parser_spellLevelToFull level}}</span>
+			</label>
+		{{/each}}
+	</div>
+
+	<div><button class="btn-5et" name="btn-run">Update</button></div>
+</div>

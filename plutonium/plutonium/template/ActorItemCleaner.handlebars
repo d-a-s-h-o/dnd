@@ -1,0 +1,28 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="{{localize 'PLUT.Find items...'}}">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">{{localize 'PLUT.Reset'}}</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1" data-name="wrp-btns-sort">
+		<label class="btn btn-5et col-2 flex-vh-center"><input type="checkbox" name="cb-select-all"></label>
+		<button class="btn-5et col-10 sort name" data-sort="name">{{localize 'PLUT.Name'}}</button>
+	</div>
+
+	<div class="veapp__list h-100 mb-1">
+		{{#each rows}}
+			<label class="flex w-100">
+				<span class="col-2 flex-vh-center"><input type="checkbox" class="no-events"></span>
+				<span class="col-10 name">{{name}}</span>
+			</label>
+		{{/each}}
+	</div>
+
+	<div>
+		<button class="btn-5et" name="btn-run">{{localize 'PLUT.Delete'}}</button>
+	</div>
+</div>

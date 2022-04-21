@@ -1,0 +1,123 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find {{titleSearch}}...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view fltr__mini-view--no-sort-buttons btn-group"></div>
+
+	<div class="flex-col w-100 h-100 overflow-x-scroll relative">
+		<!-- Player names row -->
+		<div class="w-100 flex-v-center no-shrink">
+			<!-- A dummy/spacer name -->
+			<div class="permu__cell-ent-name permu__cell-ent-name--header no-shrink"></div>
+			<div class="permu__cell-start-spacer no-shrink"></div>
+
+			<div class="flex-vh-center permu__cell-player permu__cell-player--heavy-border no-shrink bold">
+				All Players
+			</div>
+
+			<div class="flex-vh-center permu__cell-player permu__cell-player--compact no-shrink ve-muted">
+				(All)
+			</div>
+
+			{{#each players}}
+				<div class="flex-vh-center permu__cell-player no-shrink bold" title="{{name}}">{{name}}</div>
+			{{/each}}
+		</div>
+
+		<!-- Mass-update controls row -->
+		<div class="w-100 flex-v-center permu__row-head no-shrink">
+			<!-- A dummy/spacer name -->
+			<div class="permu__cell-ent-name permu__cell-ent-name--header no-shrink"></div>
+			<div class="permu__cell-start-spacer no-shrink"></div>
+
+			<!-- "All Players" -->
+			<label class="flex-vh-center permu__cell-player permu__cell-player--heavy-border no-shrink">
+				<input class="mr-1 no-events" type="checkbox" name="permu__cb-all-players-all-entities">
+				<select class="permu__sel-permission permu__sel-permission--mass input-xs" name="permu__sel-all-players-all-entities">
+					<option value="-2" selected disabled>Select...</option>
+					{{#each @root.permissions}}
+						<option value="{{value}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</label>
+
+			<!-- God controls-->
+			<label class="flex-vh-center permu__cell-player permu__cell-player--compact no-shrink">
+				<input class="mr-1" type="checkbox" name="permu__cb-each-player-all-entities">
+				<select class="permu__sel-permission permu__sel-permission--mass permu__sel-permission--compact input-xs" name="permu__sel-each-player-all-entities">
+					<option value="-2" selected disabled> ...</option>
+					{{#each @root.permissions}}
+						<option value="{{value}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</label>
+
+			{{#each players}}
+				<label class="flex-vh-center permu__cell-player no-shrink" data-permu-type="lbl-player-all-entities">
+					<input class="mr-1 no-events" type="checkbox" data-permu-player-id="{{id}}">
+					<select class="permu__sel-permission permu__sel-permission--mass input-xs" data-permu-type="sel-player-all-entities" data-permu-player-id="{{id}}">
+						<option value="-2" selected disabled>Select...</option>
+						{{#each @root.permissions}}
+							<option value="{{value}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</label>
+			{{/each}}
+		</div>
+
+		<hr class="hr-0 w-100 permu__hr-head">
+
+		<!-- List of entities -->
+		<div class="veapp__list mb-1 h-100 flex-col permu__list">
+			{{#each entities}}
+				<div class="w-100 flex-v-center permu__row-ent no-shrink" data-permu-entity-id="{{id}}">
+					<div class="permu__cell-ent-name no-shrink pr-1" title="{{path}}{{name}}">{{path}}{{name}}</div>
+					<div class="permu__cell-start-spacer no-shrink"></div>
+
+					<!-- "All Players" controls column -->
+					<label class="flex-vh-center permu__cell-player permu__cell-player--heavy-border no-shrink" data-permu-type="lbl-entity-all-players">
+						<input class="mr-1 no-events" type="checkbox" data-permu-type="cb-entity-all-players">
+						<select class="permu__sel-permission input-xs" data-permu-type="sel-entity-all-players">
+							<option value="-2" selected disabled>Select...</option>
+							{{#each @root.permissions}}
+								<option value="{{value}}" {{#compare value ../allPlayerPermissions operator="==="}}selected{{/compare}}>{{name}}</option>
+							{{/each}}
+						</select>
+					</label>
+
+					<!-- Mass-update controls column -->
+					<label class="flex-vh-center permu__cell-player permu__cell-player--mass permu__cell-player--compact no-shrink" data-permu-type="lbl-entity-each-player">
+						<input class="mr-1 no-events" type="checkbox">
+						<select class="permu__sel-permission permu__sel-permission--mass permu__sel-permission--compact input-xs" data-permu-type="sel-entity-each-player">
+							<option value="-2" selected disabled> ...</option>
+							{{#each @root.permissions}}
+								<option value="{{value}}">{{name}}</option>
+							{{/each}}
+						</select>
+					</label>
+
+					{{#each @root.players}}
+						{{#with (lookup ../playerPermissions id) as |playerPermission|}}
+							<label class="flex-vh-center permu__cell-player no-shrink" data-permu-type="lbl-entity-player">
+								<input class="mr-1 no-events" type="checkbox" data-permu-player-id="{{../id}}">
+								<select class="permu__sel-permission input-xs" data-permu-value="{{playerPermission}}" data-permu-type="sel-entity">
+									{{#each @root.permissions}}
+										<option value="{{value}}" {{#compare value playerPermission operator="==="}}selected{{/compare}}>{{name}}</option>
+									{{/each}}
+								</select>
+							</label>
+						{{/with}}
+					{{/each}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
+
+	<div class="flex-v-end">
+		<button class="btn-5et w-100 relative" name="btn-save">Save</button>
+	</div>
+</div>

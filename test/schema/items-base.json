@@ -1,43 +1,133 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.4.2",
+	"$id": "items-base.json",
+	"version": "1.4.11",
 	"definitions": {
-		"itemLookup": {
+		"itemLookupArray": {
 			"type": "array",
 			"uniqueItems": true,
-			"items": {
-				"type": "object",
-				"properties": {
-					"abbreviation": {
-						"type": "string"
-					},
-					"source": {
-						"type": "string"
-					},
-					"page": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"entries": {
-						"type": "array",
-						"items": {
-							"$ref": "entry.json"
-						}
-					},
-					"template": {
-						"$comment": "Note that this is not used on item types.",
-						"type": "string"
+			"items": {}
+		},
+		"itemLookupBase": {
+			"type": "object",
+			"properties": {
+				"abbreviation": {
+					"type": "string"
+				},
+				"source": {
+					"type": "string"
+				},
+				"page": {
+					"$ref": "util.json#/definitions/page"
+				},
+				"name": {
+					"type": "string"
+				},
+				"template": {
+					"$comment": "Note that this is not used on item types.",
+					"type": "string"
+				},
+				"entries": {
+					"type": "array",
+					"items": {
+						"$ref": "entry.json"
 					}
 				},
-				"required": [
-					"abbreviation",
-					"source",
-					"page"
-				],
-				"additionalProperties": false
-			}
+				"entriesTemplate": {
+					"type": "array",
+					"items": {
+						"$ref": "entry.json"
+					}
+				}
+			},
+			"required": [
+				"abbreviation",
+				"source",
+				"page"
+			],
+			"additionalProperties": false
+		},
+		"itemLookup": {
+			"anyOf": [
+				{
+					"type": "object",
+					"properties": {
+						"abbreviation": {
+							"type": "string"
+						},
+						"source": {
+							"type": "string"
+						},
+						"page": {
+							"$ref": "util.json#/definitions/page"
+						},
+						"name": {
+							"type": "string"
+						},
+						"template": {
+							"$comment": "Note that this is not used on item types.",
+							"type": "string"
+						},
+						"entries": {
+							"type": "array",
+							"items": {
+								"$ref": "entry.json"
+							}
+						},
+						"entriesTemplate": {
+							"type": "array",
+							"items": {
+								"$ref": "entry.json"
+							}
+						}
+					},
+					"required": [
+						"abbreviation",
+						"source",
+						"page"
+					],
+					"additionalProperties": false
+				},
+				{
+					"type": "object",
+					"properties": {
+						"abbreviation": {
+							"type": "string"
+						},
+						"source": {
+							"type": "string"
+						},
+						"page": {
+							"$ref": "util.json#/definitions/page"
+						},
+						"name": {
+							"type": "string"
+						},
+						"template": {
+							"$comment": "Note that this is not used on item types.",
+							"type": "string"
+						},
+						"entries": {
+							"type": "array",
+							"items": {
+								"$ref": "entry.json"
+							}
+						},
+						"entriesTemplate": {
+							"type": "array",
+							"items": {
+								"$ref": "entry.json"
+							}
+						}
+					},
+					"required": [
+						"abbreviation",
+						"source",
+						"page"
+					],
+					"additionalProperties": false
+				}
+			]
 		}
 	},
 	"type": "object",
@@ -52,34 +142,22 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemType"
 					},
 					"rarity": {
-						"type": "string",
-						"description": "\"None\" is for mundane items. \"Unknown (Magic)\" is for miscellaneous magical items. \"Unknown\" is for miscellaneous mundane items.",
-						"enum": [
-							"rare",
-							"none",
-							"uncommon",
-							"very rare",
-							"legendary",
-							"artifact",
-							"unknown",
-							"common",
-							"unknown (magic)"
-						]
+						"$ref": "shared-items.json#/definitions/itemRarity"
 					},
 					"source": {
 						"type": "string"
 					},
 					"page": {
-						"type": "integer"
+						"$ref": "util.json#/definitions/page"
 					},
 					"ac": {
 						"type": "integer"
 					},
 					"age": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemAge"
 					},
 					"armor": {
 						"description": "Flag used when merging generic variants",
@@ -95,7 +173,7 @@
 						"type": "string"
 					},
 					"dmgType": {
-						"type": "string"
+						"$ref": "util.json#/definitions/dataDamageTags"
 					},
 					"entries": {
 						"type": "array",
@@ -104,11 +182,7 @@
 						}
 					},
 					"property": {
-						"type": "array",
-						"items": {
-							"type": "string",
-							"enum": ["T", "V", "H", "2H", "F", "L", "R", "A", "LD", "S", "AF", "RLD", "BF"]
-						}
+						"$ref": "shared-items.json#/definitions/itemProperty"
 					},
 					"range": {
 						"type": "string"
@@ -117,7 +191,7 @@
 						"type": "integer"
 					},
 					"scfType": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemScfType"
 					},
 					"stealth": {
 						"type": "boolean"
@@ -163,10 +237,6 @@
 						"description": "In copper pieces.",
 						"type": "number"
 					},
-					"currencyConversion": {
-						"description": "ID of a value conversion table. Homebrew only.",
-						"type": "string"
-					},
 					"valueMult": {
 						"type": "number"
 					},
@@ -174,7 +244,7 @@
 						"type": "boolean"
 					},
 					"weaponCategory": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemWeaponCategory"
 					},
 					"weight": {
 						"type": "number"
@@ -188,11 +258,14 @@
 					"srd": {
 						"$ref": "util.json#/definitions/srd"
 					},
+					"basicRules": {
+						"$ref": "util.json#/definitions/basicRules"
+					},
 					"otherSources": {
 						"$ref": "util.json#/definitions/otherSources"
 					},
 					"ammoType": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemAmmoType"
 					},
 					"packContents": {
 						"type": "array",
@@ -212,7 +285,9 @@
 										}
 									},
 									"additionalProperties": false,
-									"required": ["special"]
+									"required": [
+										"special"
+									]
 								},
 								{
 									"type": "object",
@@ -225,10 +300,25 @@
 										}
 									},
 									"additionalProperties": false,
-									"required": ["item", "quantity"]
+									"required": [
+										"item",
+										"quantity"
+									]
 								}
 							]
 						}
+					},
+					"lootTables": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"hasFluff": {
+						"type": "boolean"
+					},
+					"hasFluffImages": {
+						"type": "boolean"
 					}
 				},
 				"required": [
@@ -242,10 +332,30 @@
 			}
 		},
 		"itemProperty": {
-			"$ref": "#/definitions/itemLookup"
+			"$ref": "#/definitions/itemLookupArray"
 		},
 		"itemType": {
-			"$ref": "#/definitions/itemLookup"
+			"$ref": "#/definitions/itemLookupArray"
+		},
+		"itemEntry": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string"
+					},
+					"entriesTemplate": {
+						"type": "array",
+						"items": {
+							"$ref": "entry.json"
+						}
+					}
+				}
+			}
 		},
 		"itemTypeAdditionalEntries": {
 			"type": "array",

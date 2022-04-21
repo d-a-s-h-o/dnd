@@ -1,0 +1,69 @@
+<div class="flex-col h-100 ve-window min-h-0">
+	<div class="flex-v-stretch input-group input-group--top no-shrink">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find {{titleSearch}}...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1 no-shrink" data-name="wrp-btns-sort">
+		{{#if isRadio}}
+			<button class="btn-5et {{#if isPreviewable}}col-0-5{{else}}col-1{{/if}} px-1" disabled></button>
+		{{else}}
+			<label class="btn btn-5et {{#if isPreviewable}}col-0-5{{else}}col-1{{/if}} px-1 flex-vh-center"><input type="checkbox" name="cb-select-all"></label>
+		{{/if}}
+
+		{{#if isPreviewable}}
+			<button class="btn-5et col-0-5 px-1" disabled></button>
+		{{/if}}
+
+		{{#each cols}}
+			<button class="btn-5et col-{{width}} px-1 sort" data-sort="{{field}}" {{#if title}}title="{{title}}"{{/if}}>{{name}}</button>
+		{{/each}}
+	</div>
+
+	<div class="veapp__list mb-1 h-100">
+		{{#each rows}}
+			<label class="w-100 imp__row flex-v-center">
+				<span class="{{#if ../isPreviewable}}col-0-5{{else}}col-1{{/if}} px-1 flex-vh-center">
+					{{#if ../isRadio}}
+						<input type="radio" name="radio" class="no-events">
+					{{else}}
+						<input type="checkbox" class="no-events">
+					{{/if}}
+				</span>
+
+				{{#if ../isPreviewable}}
+					<div class="col-0-5 px-1 flex-vh-center">
+						<div class="flex-vh-center btn-group">
+							<button class="imp__btn-import-single btn btn-5et btn-xxs" title="Click and Hold to Preview (SHIFT to Keep Open)">
+								<span class="ve-muted fas fa-eye"></span>
+							</button>
+							<button class="imp__btn-import-single btn btn-5et btn-xxs" title="Click to Import">
+								<span class="ve-muted fas fa-download"></span>
+							</button>
+						</div>
+					</div>
+				{{/if}}
+
+				{{#each ../cols}}
+					<span
+							class="px-1 col-{{width}} {{#if rowClassName}}{{rowClassName}}{{/if}} {{#if classNameProp}}{{{lookup .. classNameProp}}}{{/if}}"
+							{{#if titleProp}}title="{{lookup .. titleProp}}"{{/if}}
+					>
+						{{#if displayProp}}{{{lookup .. displayProp}}}{{else}}{{{lookup .. field}}}{{/if}}
+					</span>
+				{{/each}}
+			</label>
+		{{/each}}
+	</div>
+
+	<div class="no-shrink flex-v-center">
+		<button class="btn-5et" name="btn-run">{{titleButtonRun}}</button>
+		{{#each buttonsAdditional}}
+			<button class="ml-2 btn-5et" name="{{name}}">{{text}}</button>
+		{{/each}}
+	</div>
+</div>

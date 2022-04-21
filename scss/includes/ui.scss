@@ -2,7 +2,7 @@
 Shared UI components
  */
 
-@import 'vars';
+@import "vars";
 
 /* region Misc/Shared */
 .ui__ {
@@ -35,6 +35,24 @@ Shared UI components
 	&wrp {
 		transform: translateZ(0);
 		font-size: 11.2px;
+	}
+
+	&wrp-preview {
+		background: $rgb-bg-orange;
+		font-size: 90%;
+		border-top-left-radius: 5px;
+		margin-top: 1px;
+		margin-bottom: 4px;
+	}
+
+	&btn-inline {
+		cursor: pointer;
+		color: $rgb-font--muted;
+
+		&:hover {
+			background: darken($rgb-shadow-grey, 20%);
+			color: darken($rgb-font--muted, 25%);
+		}
 	}
 }
 /* endregion */
@@ -84,7 +102,7 @@ Shared UI components
 			border-radius: 3px;
 
 			&:hover {
-				background: whitesmoke;
+				background: $rgb-bg--alt;
 			}
 		}
 
@@ -166,6 +184,11 @@ Shared UI components
 		min-width: 600px;
 		max-height: 400px;
 		min-height: 400px;
+		font-size: 14px;
+		background: $rgb-bg;
+		border: 1px solid $rgb-border-grey;
+		border-radius: 4px;
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 
 		@media (max-width: 767px) {
 			min-width: 0;
@@ -331,7 +354,7 @@ Shared UI components
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-family: 'Andada', serif;
+		font-family: "Times New Roman", serif;
 		font-variant: small-caps;
 		font-weight: 500;
 	}
@@ -349,7 +372,7 @@ Shared UI components
 		user-select: none;
 		border-bottom: 0;
 
-		&--active {
+		&.active {
 			background-color: #e6e6e6;
 			border-color: #adadad;
 		}
@@ -367,6 +390,9 @@ Shared UI components
 
 		&--background {
 			background: $rgb-bg;
+			border: 1px solid $rgb-border-grey--trans;
+			border-top: 0;
+			border-bottom-color: $rgb-border-grey--trans-muted;
 		}
 	}
 
@@ -406,6 +432,10 @@ Shared UI components
 		background: $rgb-bg;
 		border: 1px solid $rgb-border-grey--trans;
 		border-bottom: 0;
+
+		&--single {
+			border: 0;
+		}
 	}
 }
 /* endregion */
@@ -415,16 +445,16 @@ Shared UI components
 	&btn-cycle {
 		@include cb-custom();
 
-		&[data-state='0'] {
+		&[data-state="0"] {
 			background: white;
 		}
 
-		&[data-state='1'] {
+		&[data-state="1"] {
 			background: $rgb-cb-grey;
 			border-color: lighten($rgb-cb-grey, 15%);
 		}
 
-		&[data-state='2'] {
+		&[data-state="2"] {
 			background: $rgb-cb-grey;
 			border-color: lighten($rgb-cb-grey, 15%);
 			display: flex;
@@ -434,17 +464,17 @@ Shared UI components
 			font-style: normal;
 			font-variant: normal;
 			text-rendering: auto;
-			font-family: 'Font Awesome 5 Pro';
+			font-family: "Font Awesome 5 Pro";
 			font-weight: 900;
 			color: white;
 			font-size: 12px;
 
 			&::before {
-				content: '\f005'; /* star */
+				content: "\f005"; /* star */
 			}
 		}
 
-		&[data-state='3'] {
+		&[data-state="3"] {
 			background: repeating-linear-gradient(135deg, white, white 10px, $rgb-cb-grey 10px, $rgb-cb-grey 20px);
 			border-color: lighten($rgb-cb-grey, 15%);
 		}
@@ -583,8 +613,11 @@ Shared UI components
 	}
 
 	&__row {
-		cursor: pointer;
 		min-width: 160px;
+	}
+
+	&__btn {
+		cursor: pointer;
 
 		&:hover {
 			background: $rgb-bg--alt;
@@ -791,6 +824,10 @@ Shared UI components
 		background: transparent;
 	}
 
+	&ipt-display {
+		padding-right: 20px;
+	}
+
 	&wrp {
 		&:focus,
 		&:focus-within {
@@ -840,6 +877,106 @@ Shared UI components
 		&:focus.active,
 		&:hover.active {
 			background: darken($rgb-bg--alt, $pct-darken-active);
+		}
+	}
+
+	&disp-arrow {
+		top: 4px;
+		right: 4px;
+		bottom: 0;
+		font-size: 12px;
+	}
+}
+/* endregion */
+
+/* region Range Slider */
+.ui-slidr {
+	&__ {
+		$sz-top-row-pad: 6px;
+
+		&wrp {
+			font-size: 14px;
+		}
+
+		&wrp-top {
+			// (Nothing yet)
+		}
+
+		&thumb {
+			width: 14px;
+			height: 18px;
+			top: -5px;
+			background: $rgb-bg--alt;
+			border: 1px solid $rgb-border-grey;
+			border-radius: 2px;
+
+			&--hover,
+			&:hover {
+				background: darken($rgb-bg--alt, 10%);
+				border-color: darken($rgb-border-grey, 10%);
+			}
+		}
+
+		&wrp-track {
+			padding-top: $sz-top-row-pad;
+			padding-bottom: 7px;
+		}
+
+		&track-outer {
+			border: 1px solid $rgb-border-grey;
+			height: 10px;
+			border-radius: 3px;
+		}
+
+		&track-inner {
+			background: $rgb-border-grey--muted;
+		}
+
+		&disp-value {
+			width: 80px;
+			height: 26px;
+			border-radius: 4px;
+
+			&--visible {
+				border: 1px solid $rgb-border-grey;
+				background: $rgb-bg;
+			}
+
+			&--left {
+				margin-right: 15px;
+				margin-left: 7px;
+			}
+
+			&--right {
+				margin-right: 7px;
+				margin-left: 15px;
+			}
+		}
+
+		&wrp-bottom {
+			height: 3em; // Padded so our `absolute` elements have space
+		}
+
+		&wrp-pips {
+			padding-top: 6px;
+		}
+
+		&pip {
+			width: 1px;
+			height: 4px;
+			background: $rgb-border-grey;
+
+			&--major {
+				height: 6px;
+				background: darken($rgb-border-grey, 15%);
+			}
+		}
+
+		&pip-label {
+			top: 0;
+			width: 24px;
+			height: 20px;
+			padding-top: 20px;
 		}
 	}
 }

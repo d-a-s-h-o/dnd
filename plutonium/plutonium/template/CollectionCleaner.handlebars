@@ -1,0 +1,32 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top">
+		<button class="btn-5et veapp__btn-filter" name="btn-filter">Filter</button>
+		<button class="btn btn-5et" title="Toggle Filter Summary Display" name="btn-toggle-summary"><span class="glyphicon glyphicon-resize-small"></span></button>
+		<input type="search" class="search w-100 form-control" placeholder="Find {{titleSearch}}...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+
+	<div class="fltr__mini-view btn-group"></div>
+
+	<div class="flex-v-stretch input-group input-group--bottom mb-1" data-name="wrp-btns-sort">
+		<label class="btn btn-5et col-2 flex-vh-center"><input type="checkbox" name="cb-select-all"></label>
+		<button class="btn-5et col-10 sort name" data-sort="name">Name</button>
+	</div>
+
+	<div class="veapp__list h-100 mb-1">
+		{{#each rows}}
+			<label class="flex w-100">
+				<span class="col-2 flex-vh-center"><input type="checkbox" class="no-events"></span>
+				<span class="col-10 name">{{displayName}}</span>
+			</label>
+		{{/each}}
+	</div>
+
+	<div class="flex-v-end">
+		<button class="btn-5et mr-2 w-50" name="btn-run">Delete</button>
+		<div class="flex-col w-50">
+			<label class="flex-v-center flex-h-right mb-1"><span class="mr-1" title="Automatically Prune Empty Folders">Auto-Prune</span><input type="checkbox" name="cb-prune-auto" checked></label>
+			<button class="btn-5et" name="btn-prune">Prune Empty Folders</button>
+		</div>
+	</div>
+</div>

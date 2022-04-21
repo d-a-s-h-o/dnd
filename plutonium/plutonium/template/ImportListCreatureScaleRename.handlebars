@@ -1,0 +1,72 @@
+<div class="flex-col ve-window min-h-0 h-100">
+	<div class="flex-v-stretch input-group input-group--top no-shrink">
+		<input type="search" class="search w-100 form-control" placeholder="Find {{titleSearch}}...">
+		<button class="btn-5et veapp__btn-list-reset" name="btn-reset">Reset</button>
+	</div>
+	<div class="flex-v-stretch input-group input-group--bottom mb-1 no-shrink" data-name="wrp-btns-sort">
+		<button class="btn-5et col-3 sort name" data-sort="name">Name</button>
+		<button class="btn-5et col-1-5 sort source" data-sort="source">Source</button>
+		<button class="btn-5et col-1-5 sort cr" data-sort="cr">CR</button>
+
+		<button class="btn-5et col-3" disabled>Rename To</button>
+		<button class="btn-5et col-3" disabled>Scale To</button>
+	</div>
+
+	<div class="veapp__list mb-1 h-100">
+		{{#each rows}}
+			<label class="w-100 flex-v-center imp__row-creature-scale stripe-even">
+				<span class="col-3 pl-1">{{name}}</span>
+				<span class="col-1-5 text-center {{sourceClassName}}" title="{{sourceLong}}">{{sourceShort}}</span>
+				<span class="col-1-5 text-center">{{cr}}</span>
+				<div class="col-3 flex-v-center"><input class="w-100 mx-1 input-xs" name="ipt-rename" type="text"></div>
+				{{#if isAdjustable}}
+					<div class="col-3 flex-v-center">
+						<select class="w-100 mx-1 input-xs" name="sel-cr">
+							<option value="-1" title="Use Existing CR">&mdash;</option>
+							<option value="0">0</option>
+							<option value="0.125">1/8</option>
+							<option value="0.25">1/4</option>
+							<option value="0.5">1/2</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+						</select>
+					</div>
+				{{else}}
+					<div class="col-3 text-center">&mdash;</div>
+				{{/if}}
+			</label>
+		{{/each}}
+	</div>
+
+	<div class="no-shrink">
+		<button class="btn-5et" name="btn-run">Import</button>
+	</div>
+</div>

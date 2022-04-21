@@ -2,22 +2,19 @@
 <html lang="en">
 
 <head>
-	<!-- Built by Dasho -->
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
-	<title>Items - D&amp;Dz</title>
+	<title>Items - D&Dz</title>
 
-	<link rel="stylesheet" href="css/bootstrap.css?v=3.0.1">
-	<link rel="stylesheet" href="css/jquery-ui.css?v=3.0.1">
-	<link rel="stylesheet" href="css/jquery-ui-slider-pips.css?v=3.0.1">
-	<link rel="stylesheet" href="css/main.css?v=3.0.1">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Favicons -->
-	
+	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
 	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
 	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
 	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
@@ -28,7 +25,7 @@
 
 	<!-- Chrome Web App Icons -->
 	<link rel="manifest" href="manifest.webmanifest">
-	<meta name="application-name" content="D&amp;Dz">
+	<meta name="application-name" content="D&Dz">
 	<meta name="theme-color" content="#0d2c46">
 
 	<!-- Windows Start Menu tiles -->
@@ -41,22 +38,27 @@
 	<link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
 	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
-	<meta name="apple-mobile-web-app-title" content="D&amp;Dz">
+	<meta name="apple-mobile-web-app-title" content="D&Dz">
 
 	<!-- macOS Safari Pinned Tab and Touch Bar -->
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#0d2c46">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js?v=3.0.1");</script>
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search D&Dz" type="application/opensearchdescription+xml">
 
-	<script type="text/javascript" src="js/header.js?v=3.0.1"></script>
+	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");</script>
+
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
 	<style>
-		ul.list {
+		.list {
 			height: initial;
 			max-height: 100%;
 			min-height: 100px;
 		}
 
-		ul.list.subitems {
+		.list.subitems {
 			min-height: initial;
 		}
 
@@ -81,13 +83,13 @@
 		}
 
 		@media (max-width: 991px) {
-			ul.list {
+			.list {
 				max-height: 20em;
 			}
 		}
 
 		@media (max-device-height: 700px) {
-			ul.list {
+			.list {
 				max-height: 20em;
 			}
 
@@ -101,7 +103,7 @@
 				height: auto;
 			}
 
-			ul.list {
+			.list {
 				max-height: 20em;
 			}
 		}
@@ -179,47 +181,47 @@
 	</header>
 
 	<nav class="container page__nav" id="navigation">
-		<ul class="nav page__nav-inner" id="navbar"></ul>
+		<ul class="nav nav-pills page__nav-inner" id="navbar"></ul>
 	</nav>
 
 	<div class="view-col-group--cancer h-100 mh-0">
 		<div class="container view-col-wrapper view-col-wrapper--cancer">
 			<div class="view-col itm__wrp-lists" id="listcontainer">
-				<div class="flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--mundane">
+				<div class="ve-flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--mundane">
 					<div class="lst__form-top" id="filter-search-group">
 						<div class="w-100 relative">
 							<input type="search" id="lst__search" autocomplete="off" autocapitalize="off" spellcheck="false" class="search form-control lst__search lst__search--no-border-h">
-							<div id="lst__search-glass" class="lst__wrp-search-glass no-events flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
-							<div class="lst__wrp-search-visible no-events flex-vh-center"></div>
+							<div id="lst__search-glass" class="lst__wrp-search-glass no-events ve-flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
+							<div class="lst__wrp-search-visible no-events ve-flex-vh-center"></div>
 						</div>
 						<button class="btn btn-default" id="reset">Reset</button>
 					</div>
 
-					<div id="filtertools-mundane" class="ele-mundane input-group input-group--bottom flex no-shrink">
-						<button class="col-3-5 sort btn btn-default btn-xs" data-sort="name" data-sortby="asc">Name <span class="caret_wrp"></span></button>
-						<button class="col-4-5 sort btn btn-default btn-xs" data-sort="type" data-sortby="asc">Type <span class="caret_wrp"></span></button>
-						<button class="col-1-5 sort btn btn-default btn-xs" data-sort="cost" data-sortby="asc">Cost <span class="caret_wrp"></span></button>
-						<button class="col-1-5 sort btn btn-default btn-xs" data-sort="weight" data-sortby="asc">Weight <span class="caret_wrp"></span></button>
-						<button class="sort btn btn-default btn-xs ve-grow" data-sort="source" data-sortby="asc">Source <span class="caret_wrp"></span></button>
+					<div id="filtertools-mundane" class="ele-mundane input-group input-group--bottom ve-flex no-shrink">
+						<button class="col-3-5 sort btn btn-default btn-xs" data-sort="name" data-sortby="asc">Name</button>
+						<button class="col-4-5 sort btn btn-default btn-xs" data-sort="type" data-sortby="asc">Type</button>
+						<button class="col-1-5 sort btn btn-default btn-xs" data-sort="cost" data-sortby="asc">Cost</button>
+						<button class="col-1-5 sort btn btn-default btn-xs" data-sort="weight" data-sortby="asc">Weight</button>
+						<button class="sort btn btn-default btn-xs ve-grow" data-sort="source" data-sortby="asc">Source</button>
 					</div>
 
-					<ul class="list list--stats mundane ele-mundane"></ul>
+					<div class="list list--stats mundane ele-mundane"></div>
 					<h3 class="ele-mundane"><span class="side-label side-label--mundane clickable"></span></h3>
 				</div>
 
-				<div class="flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--magic">
+				<div class="ve-flex-col min-h-0 w-100 itm__wrp-list itm__wrp-list--empty itm__wrp-list--magic">
 					<div class="no-shrink itm__list-divider ele-mundane-and-magic"></div>
 
-					<div id="filtertools-magic" class="ele-magic input-group input-group--bottom flex no-shrink">
-						<button class="fullborder col-3-5 sort btn btn-default btn-xs" data-sort="name" data-sortby="asc">Name <span class="caret_wrp"></span></button>
-						<button class="fullborder col-4 sort btn btn-default btn-xs" data-sort="type" data-sortby="asc">Type <span class="caret_wrp"></span></button>
-						<button class="fullborder col-1-5 sort btn btn-default btn-xs" data-sort="weight" data-sortby="asc">Weight <span class="caret_wrp"></span></button>
-						<button class="col-0-6 sort btn btn-default btn-xs" data-sort="attunement" title="Can Be Attuned">A. <span class="caret_wrp"></span></button>
-						<button class="fullborder col-1-4 sort btn btn-default btn-xs" data-sort="rarity" data-sortby="asc">Rarity <span class="caret_wrp"></span></button>
-						<button class="fullborder sort btn btn-default btn-xs ve-grow" data-sort="source" data-sortby="asc">Source <span class="caret_wrp"></span></button>
+					<div id="filtertools-magic" class="ele-magic input-group input-group--bottom ve-flex no-shrink">
+						<button class="fullborder col-3-5 sort btn btn-default btn-xs" data-sort="name" data-sortby="asc">Name</button>
+						<button class="fullborder col-4 sort btn btn-default btn-xs" data-sort="type" data-sortby="asc">Type</button>
+						<button class="fullborder col-1-5 sort btn btn-default btn-xs" data-sort="weight" data-sortby="asc">Weight</button>
+						<button class="col-0-6 sort btn btn-default btn-xs" data-sort="attunement" title="Can Be Attuned">A.</button>
+						<button class="fullborder col-1-4 sort btn btn-default btn-xs" data-sort="rarity" data-sortby="asc">Rarity</button>
+						<button class="fullborder sort btn btn-default btn-xs ve-grow" data-sort="source" data-sortby="asc">Source</button>
 					</div>
 
-					<ul class="list list--stats magic ele-magic"></ul>
+					<div class="list list--stats magic ele-magic"></div>
 					<h3 class="ele-magic"><span class="side-label side-label--magic clickable"></span></h3>
 				</div>
 			</div>
@@ -227,15 +229,15 @@
 			<div id="contentwrapper" class="view-col itm__wrp-stats">
 				<div id="sublistcontainer" class="sublist sublist--resizable">
 					<div id="sublistsort" class="btn-group sublist__wrp-cols">
-						<button class="col-6 sort btn btn-default btn-xs" data-sort="name">Name <span class="caret_wrp"></span></button>
-						<button class="col-2 sort btn btn-default btn-xs" data-sort="weight">Weight <span class="caret_wrp"></span></button>
-						<button class="col-2 sort btn btn-default btn-xs" data-sort="cost">Cost <span class="caret_wrp"></span></button>
-						<button class="col-2 sort btn btn-default btn-xs" data-sort="count">Number <span class="caret_wrp"></span></button>
+						<button class="col-6 sort btn btn-default btn-xs" data-sort="name">Name</button>
+						<button class="col-2 sort btn btn-default btn-xs" data-sort="weight">Weight</button>
+						<button class="col-2 sort btn btn-default btn-xs" data-sort="cost">Cost</button>
+						<button class="col-2 sort btn btn-default btn-xs" data-sort="count">Number</button>
 					</div>
-					<ul class="list subitems">
+					<div class="list subitems">
 						<!-- populate with JS -->
-					</ul>
-					<div class="row ve-small">
+					</div>
+					<div class="row ve-small ve-flex-v-center">
 						<span class="col-6 text-right pr-2">Total:</span>
 						<span class="col-2 text-center no-wrap" id="totalweight"></span>
 						<span class="col-2 text-center no-wrap clickable" id="totalvalue"></span>
@@ -255,7 +257,7 @@
 					</table>
 				</div>
 
-				<div class="text-center wrp-footer-buttons">
+				<div class="text-center mt-2 no-print">
 					<button class="btn btn-default btn-xs" id="btn-show-table" title="View and Download Items in Tabular Format">Table View</button>
 					<button class="btn btn-xs btn-info" id="manage-brew">Manage Homebrew</button>
 				</div>
@@ -263,19 +265,25 @@
 		</div>
 	</div>
 </div>
-
-<!-- Built by Dasho -->
 <script type="text/javascript" src="lib/jquery.js"></script>
-<script type="text/javascript" src="lib/jquery-ui.js"></script>
-<script type="text/javascript" src="lib/jquery-ui-slider-pip.js"></script>
-<script type="text/javascript" src="js/shared.js?v=3.0.1"></script>
-<script type="text/javascript" src="js/utils-list.js?v=3.0.1"></script>
+<script type="text/javascript" src="js/parser.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/utils-list.js"></script>
+<script type="text/javascript" src="js/utils-ui.js"></script>
+<script type="text/javascript" src="js/utils-tableview.js"></script>
 <script type="text/javascript" src="lib/localforage.js"></script>
-<script type="text/javascript" src="js/filter.js?v=3.0.1"></script>
-<script type="text/javascript" src="js/render-items.js?v=3.0.1"></script>
-<script type="text/javascript" src="js/filter-items.js?v=3.0.1"></script>
-<script type="text/javascript" src="js/items.js?v=3.0.1"></script>
-<script type="text/javascript" src="js/list2.js?v=3.0.1"></script>
+<script type="text/javascript" src="js/omnidexer.js"></script>
+<script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/render.js"></script>
+<script type="text/javascript" src="js/render-dice.js"></script>
+<script type="text/javascript" src="js/render-items.js"></script>
+<script type="text/javascript" src="js/scalecreature.js"></script>
+<script type="text/javascript" src="js/hist.js"></script>
+<script type="text/javascript" src="js/listpage.js"></script>
+<script type="text/javascript" src="js/filter-items.js"></script>
+<script type="text/javascript" src="js/items.js"></script>
+<script type="text/javascript" src="js/list2.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 </body>
 

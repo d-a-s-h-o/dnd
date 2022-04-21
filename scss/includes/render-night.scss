@@ -1,4 +1,4 @@
-@import 'vars';
+@import "vars";
 
 .night-mode .rd {
 	&__ {
@@ -61,42 +61,20 @@
 			color: $rgb-font--night;
 		}
 	}
-}
 
-// region Source colors
-.subclass-feature {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-subclass--night;
-		border-bottom-color: $rgb-subclass--night;
+	&-ability-icon {
+		&__ {
+			&fill-primary {
+				fill: $rgb-font--night;
+			}
+
+			&fill-bg {
+				fill: $rgb-bg--night;
+			}
+
+			&stroke-bg {
+				stroke: $rgb-bg--night;
+			}
+		}
 	}
 }
-
-.spicy-sauce {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-subclass-ua--night;
-		border-bottom-color: $rgb-subclass-ua--night;
-	}
-}
-
-.spicy-sauce:not(.subclass-feature):not(.subclass-feature--sub) {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-class-ua--night;
-		border-bottom-color: $rgb-class-ua--night;
-	}
-}
-
-.refreshing-brew {
-	.rd__h--0,
-	.rd__h--1,
-	.rd__h--2 {
-		color: $rgb-class-brew--night;
-		border-bottom-color: $rgb-class-brew--night;
-	}
-}
-// endregion

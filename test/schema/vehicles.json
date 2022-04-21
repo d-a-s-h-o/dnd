@@ -1,26 +1,38 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.3.1",
+	"$id": "vehicles.json",
+	"version": "1.5.4",
 	"type": "object",
-
 	"definitions": {
 		"vehicleTerrain": {
 			"type": "array",
 			"items": {
 				"type": "string",
-				"enum": ["land", "sea", "air"]
+				"enum": [
+					"land",
+					"sea",
+					"air"
+				]
 			}
 		},
-
 		"vehicle": {
 			"oneOf": [
-				{"$ref": "#/definitions/vehicleShip"},
-				{"$ref": "#/definitions/vehicleInfernalWarMachine"},
-				{"$ref": "#/definitions/vehicleCreature"}
+				{
+					"$ref": "#/definitions/vehicleShip"
+				},
+				{
+					"$ref": "#/definitions/vehicleInfernalWarMachine"
+				},
+				{
+					"$ref": "#/definitions/vehicleCreature"
+				},
+				{
+					"$ref": "#/definitions/vehicleObject"
+				}
 			]
 		},
-
 		"vehicleUpgrade": {
+			"type": "object",
 			"properties": {
 				"name": {
 					"type": "string"
@@ -35,10 +47,21 @@
 					"type": "string"
 				},
 				"page": {
-					"type": "integer"
+					"$ref": "util.json#/definitions/page"
 				},
 				"upgradeType": {
-					"type": "string"
+					"type": "array",
+					"items": {
+						"$ref": "util.json#/definitions/dataOptionalfeatureType",
+						"type": "string",
+						"pattern": "^(SHP|IWM):.*"
+					}
+				},
+				"hasFluff": {
+					"type": "boolean"
+				},
+				"hasFluffImages": {
+					"type": "boolean"
 				}
 			},
 			"required": [
@@ -49,8 +72,8 @@
 			],
 			"additionalProperties": false
 		},
-
 		"vehicleShip": {
+			"type": "object",
 			"properties": {
 				"name": {
 					"type": "string"
@@ -59,24 +82,16 @@
 					"type": "string"
 				},
 				"page": {
-					"type": "integer"
+					"$ref": "util.json#/definitions/page"
 				},
-				"vehicleType": {"const": "SHIP"},
-				"terrain": {"$ref": "#/definitions/vehicleTerrain"},
+				"vehicleType": {
+					"const": "SHIP"
+				},
+				"terrain": {
+					"$ref": "#/definitions/vehicleTerrain"
+				},
 				"size": {
-					"type": "string",
-					"enum": [
-						"F",
-						"D",
-						"T",
-						"S",
-						"M",
-						"L",
-						"H",
-						"G",
-						"C",
-						"V"
-					]
+					"$ref": "util.json#/definitions/size"
 				},
 				"dimensions": {
 					"type": "array",
@@ -91,7 +106,10 @@
 					"type": "integer"
 				},
 				"capCargo": {
-					"type": ["number", "string"]
+					"type": [
+						"number",
+						"string"
+					]
 				},
 				"pace": {
 					"type": "integer"
@@ -128,6 +146,7 @@
 				},
 				"actionThresholds": {
 					"type": "object",
+					"description": "A map of \"number of vehicle actions\": \"number of remaining crew members\"",
 					"patternProperties": {
 						"\\d+": {
 							"type": "integer"
@@ -149,11 +168,18 @@
 						"hp": {
 							"type": "integer"
 						},
+						"hpNote": {
+							"type": "string"
+						},
 						"dt": {
-							"type": "integer"
+							"type": "integer",
+							"description": "Damage Threshold"
 						}
 					},
-					"required": ["ac", "hp"],
+					"required": [
+						"ac",
+						"hp"
+					],
 					"additionalProperties": false
 				},
 				"control": {
@@ -171,7 +197,8 @@
 								"type": "integer"
 							},
 							"dt": {
-								"type": "integer"
+								"type": "integer",
+								"description": "Damage Threshold"
 							},
 							"entries": {
 								"type": "array",
@@ -180,7 +207,11 @@
 								}
 							}
 						},
-						"required": ["ac", "hp", "entries"],
+						"required": [
+							"ac",
+							"hp",
+							"entries"
+						],
 						"additionalProperties": false
 					}
 				},
@@ -205,7 +236,8 @@
 								"type": "string"
 							},
 							"dt": {
-								"type": "integer"
+								"type": "integer",
+								"description": "Damage Threshold"
 							},
 							"locomotion": {
 								"description": "Legacy format, from the original UA release.",
@@ -223,7 +255,10 @@
 											}
 										}
 									},
-									"required": ["mode", "entries"],
+									"required": [
+										"mode",
+										"entries"
+									],
 									"additionalProperties": false
 								}
 							},
@@ -242,12 +277,18 @@
 											}
 										}
 									},
-									"required": ["mode", "entries"],
+									"required": [
+										"mode",
+										"entries"
+									],
 									"additionalProperties": false
 								}
 							}
 						},
-						"required": ["ac", "hp"],
+						"required": [
+							"ac",
+							"hp"
+						],
 						"additionalProperties": false
 					}
 				},
@@ -269,7 +310,8 @@
 								"type": "integer"
 							},
 							"dt": {
-								"type": "integer"
+								"type": "integer",
+								"description": "Damage Threshold"
 							},
 							"entries": {
 								"type": "array",
@@ -278,7 +320,10 @@
 								}
 							}
 						},
-						"required": ["name", "entries"],
+						"required": [
+							"name",
+							"entries"
+						],
 						"additionalProperties": false
 					}
 				},
@@ -297,19 +342,70 @@
 								}
 							}
 						},
-						"required": ["entries"],
+						"required": [
+							"entries"
+						],
 						"additionalProperties": false
 					}
 				},
+				"trait": {
+					"oneOf": [
+						{
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"entries": {
+										"type": "array",
+										"items": {
+											"$ref": "entry.json"
+										}
+									},
+									"type": {
+										"type": "string",
+										"enum": [
+											"entries",
+											"inset"
+										]
+									},
+									"sort": {
+										"description": "Forces a sort order. Traits with sort orders will always be arranged before those without.",
+										"type": "integer"
+									}
+								},
+								"required": [
+									"name",
+									"entries"
+								],
+								"additionalProperties": false
+							}
+						},
+						{
+							"type": "null"
+						}
+					]
+				},
 				"hasToken": {
+					"type": "boolean"
+				},
+				"hasFluff": {
+					"type": "boolean"
+				},
+				"hasFluffImages": {
 					"type": "boolean"
 				}
 			},
-			"required": ["name", "source"],
+			"required": [
+				"name",
+				"source"
+			],
 			"additionalProperties": false
 		},
-
 		"vehicleInfernalWarMachine": {
+			"type": "object",
 			"properties": {
 				"name": {
 					"type": "string"
@@ -318,24 +414,16 @@
 					"type": "string"
 				},
 				"page": {
-					"type": "integer"
+					"$ref": "util.json#/definitions/page"
 				},
-				"vehicleType": {"const": "INFWAR"},
-				"terrain": {"$ref": "#/definitions/vehicleTerrain"},
+				"vehicleType": {
+					"const": "INFWAR"
+				},
+				"terrain": {
+					"$ref": "#/definitions/vehicleTerrain"
+				},
 				"size": {
-					"type": "string",
-					"enum": [
-						"F",
-						"D",
-						"T",
-						"S",
-						"M",
-						"L",
-						"H",
-						"G",
-						"C",
-						"V"
-					]
+					"$ref": "util.json#/definitions/size"
 				},
 				"weight": {
 					"type": "integer"
@@ -371,17 +459,24 @@
 					"type": "object",
 					"properties": {
 						"hp": {
-							"type": "integer"
+							"type": "integer",
+							"description": "Hit Points"
 						},
 						"dt": {
-							"type": "integer"
+							"type": "integer",
+							"description": "Damage Threshold"
 						},
 						"mt": {
-							"type": "integer"
+							"type": "integer",
+							"description": "Mishap Threshold"
 						}
 					},
 					"additionalProperties": false,
-					"required": ["hp", "dt", "mt"]
+					"required": [
+						"hp",
+						"dt",
+						"mt"
+					]
 				},
 				"conditionImmune": {
 					"type": "array",
@@ -414,6 +509,7 @@
 				},
 				"actionStation": {
 					"type": "array",
+					"description": "The Action Stations section of a vehicle block, for example the \"Helm\" or a weapon.",
 					"items": {
 						"type": "object",
 						"properties": {
@@ -448,29 +544,54 @@
 				},
 				"hasToken": {
 					"type": "boolean"
+				},
+				"hasFluff": {
+					"type": "boolean"
+				},
+				"hasFluffImages": {
+					"type": "boolean"
 				}
 			},
-			"required": ["name", "source"],
+			"required": [
+				"name",
+				"source"
+			],
 			"additionalProperties": false
 		},
-
 		"vehicleCreature": {
+			"type": "object",
 			"properties": {
-				"vehicleType": {"const": "CREATURE"},
-				"terrain": {"$ref": "#/definitions/vehicleTerrain"}
+				"vehicleType": {
+					"const": "CREATURE"
+				},
+				"terrain": {
+					"$ref": "#/definitions/vehicleTerrain"
+				}
+			}
+		},
+		"vehicleObject": {
+			"type": "object",
+			"properties": {
+				"vehicleType": {
+					"const": "OBJECT"
+				},
+				"terrain": {
+					"$ref": "#/definitions/vehicleTerrain"
+				}
 			}
 		}
 	},
-
 	"properties": {
 		"vehicle": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"$ref": "#/definitions/vehicle"
 			}
 		},
 		"vehicleUpgrade": {
 			"type": "array",
+			"uniqueItems": true,
 			"items": {
 				"$ref": "#/definitions/vehicleUpgrade"
 			}

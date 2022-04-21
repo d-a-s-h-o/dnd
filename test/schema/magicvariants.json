@@ -1,6 +1,7 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.2.6",
+	"$id": "magicvariants.json",
+	"version": "1.5.3",
 	"type": "object",
 	"properties": {
 		"variant": {
@@ -13,12 +14,12 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "string"
+						"$ref": "shared-items.json#/definitions/itemType"
 					},
 					"entries": {
 						"type": "array",
 						"items": {
-							"properties": {}
+							"$ref": "entry.json"
 						}
 					},
 					"requires": {
@@ -35,6 +36,12 @@
 								"axe": {
 									"type": "boolean"
 								},
+								"bow": {
+									"type": "boolean"
+								},
+								"crossbow": {
+									"type": "boolean"
+								},
 								"sword": {
 									"type": "boolean"
 								},
@@ -42,19 +49,28 @@
 									"type": "boolean"
 								},
 								"dmgType": {
-									"type": "string"
+									"$ref": "util.json#/definitions/dataDamageTags"
 								},
 								"name": {
 									"type": "string"
 								},
-								"type": {
+								"source": {
 									"type": "string"
 								},
+								"type": {
+									"$ref": "shared-items.json#/definitions/itemType"
+								},
 								"scfType": {
-									"type": "string"
+									"$ref": "shared-items.json#/definitions/itemScfType"
 								},
 								"net": {
 									"type": "boolean"
+								},
+								"weaponCategory": {
+									"$ref": "shared-items.json#/definitions/itemWeaponCategory"
+								},
+								"property": {
+									"type": "string"
 								}
 							},
 							"additionalProperties": false
@@ -65,7 +81,7 @@
 						"properties": {
 							"type": {
 								"description": "Generally this should be omitted, as the type of the base item will be used.",
-								"type": "string"
+								"$ref": "shared-items.json#/definitions/itemType"
 							},
 							"bonusAc": {
 								"type": "string"
@@ -79,32 +95,34 @@
 							"bonusSpellAttack": {
 								"type": "string"
 							},
+							"bonusSpellDamage": {
+								"type": "string"
+							},
 							"bonusSavingThrow": {
 								"type": "string"
 							},
-							"tier": {
+							"bonusAbilityCheck": {
 								"type": "string"
 							},
+							"modifySpeed": {
+								"$ref": "shared-items.json#/definitions/itemModifySpeed"
+							},
+							"tier": {
+								"$ref": "shared-items.json#/definitions/itemTier"
+							},
 							"rarity": {
-								"type": "string",
-								"enum": [
-									"rare",
-									"none",
-									"uncommon",
-									"very rare",
-									"legendary",
-									"artifact",
-									"unknown",
-									"common",
-									"unknown (magic)",
-									"varies"
-								]
+								"$ref": "shared-items.json#/definitions/itemRarity",
+								"not": {
+									"enum": [
+										"varies"
+									]
+								}
 							},
 							"source": {
 								"type": "string"
 							},
 							"page": {
-								"type": "integer"
+								"$ref": "util.json#/definitions/page"
 							},
 							"namePrefix": {
 								"type": "string"
@@ -116,26 +134,34 @@
 								"type": "string"
 							},
 							"reqAttune": {
-								"oneOf": [
-									{
-										"type": "string"
-									},
-									{
-										"type": "boolean"
-									}
+								"type": [
+									"string",
+									"boolean"
 								]
 							},
 							"curse": {
 								"type": "boolean"
 							},
+							"vulnerable": {
+								"$ref": "util.json#/definitions/damageVulnerabilityArray"
+							},
 							"resist": {
-								"type": "string"
+								"$ref": "util.json#/definitions/damageResistArray"
+							},
+							"immune": {
+								"$ref": "util.json#/definitions/damageImmunityArray"
+							},
+							"conditionImmune": {
+								"$ref": "util.json#/definitions/conditionImmunityArray"
 							},
 							"stealth": {
 								"type": "boolean"
 							},
 							"strength": {
-								"type": ["string", "null"]
+								"type": [
+									"string",
+									"null"
+								]
 							},
 							"wondrous": {
 								"type": "boolean"
@@ -143,11 +169,17 @@
 							"entries": {
 								"type": "array",
 								"items": {
-									"properties": {}
+									"$ref": "entry.json"
 								}
 							},
 							"charges": {
-								"type": ["string", "integer"]
+								"type": [
+									"string",
+									"integer"
+								]
+							},
+							"recharge": {
+								"$ref": "shared-items.json#/definitions/itemRecharge"
 							},
 							"attachedSpells": {
 								"type": "array",
@@ -164,11 +196,13 @@
 										},
 										{
 											"type": "object",
-											"name": {
-												"type": "string"
-											},
-											"source": {
-												"type": "string"
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"source": {
+													"type": "string"
+												}
 											}
 										}
 									]
@@ -176,6 +210,9 @@
 							},
 							"srd": {
 								"$ref": "util.json#/definitions/srd"
+							},
+							"basicRules": {
+								"$ref": "util.json#/definitions/basicRules"
 							},
 							"otherSources": {
 								"$ref": "util.json#/definitions/otherSources"
@@ -196,6 +233,16 @@
 							},
 							"barding": {
 								"type": "boolean"
+							},
+							"reqAttuneTags": {
+								"$ref": "util.json#/definitions/reqAttuneTags"
+							},
+							"reqAttuneAltTags": {
+								"$ref": "util.json#/definitions/reqAttuneTags"
+							},
+							"hasRefs": {
+								"type": "boolean",
+								"description": "Whether this item has references within its data to dedicated \"itemEntry\"s."
 							}
 						},
 						"required": [
@@ -222,10 +269,20 @@
 								]
 							},
 							"page": {
-								"type": "integer"
+								"$ref": "util.json#/definitions/page"
 							},
 							"property": {
-								"type": "string"
+								"oneOf": [
+									{
+										"type": "string"
+									},
+									{
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									}
+								]
 							},
 							"net": {
 								"type": "boolean"
@@ -237,7 +294,10 @@
 						"type": "boolean"
 					},
 					"charges": {
-						"type": ["string", "integer"]
+						"type": [
+							"string",
+							"integer"
+						]
 					},
 					"attachedSpells": {
 						"type": "array",
@@ -246,6 +306,21 @@
 						}
 					},
 					"ammo": {
+						"type": "boolean"
+					},
+					"reqAttuneTags": {
+						"$ref": "util.json#/definitions/reqAttuneTags"
+					},
+					"reqAttuneAltTags": {
+						"$ref": "util.json#/definitions/reqAttuneTags"
+					},
+					"weaponCategory": {
+						"$ref": "shared-items.json#/definitions/itemWeaponCategory"
+					},
+					"hasFluff": {
+						"type": "boolean"
+					},
+					"hasFluffImages": {
 						"type": "boolean"
 					}
 				},
